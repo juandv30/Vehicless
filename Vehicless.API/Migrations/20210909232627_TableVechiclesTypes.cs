@@ -2,7 +2,7 @@
 
 namespace Vehicless.API.Migrations
 {
-    public partial class AddTableVehicleTypes : Migration
+    public partial class TableVechiclesTypes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,7 @@ namespace Vehicless.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

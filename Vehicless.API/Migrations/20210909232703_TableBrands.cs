@@ -2,7 +2,7 @@
 
 namespace Vehicless.API.Migrations
 {
-    public partial class AddTableProcedures : Migration
+    public partial class TableBrands : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

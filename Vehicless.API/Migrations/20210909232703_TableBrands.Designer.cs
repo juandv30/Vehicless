@@ -9,8 +9,8 @@ using Vehicless.API.Data;
 namespace Vehicless.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210901012221_AddTableVehicleTypes")]
-    partial class AddTableVehicleTypes
+    [Migration("20210909232703_TableBrands")]
+    partial class TableBrands
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,10 +51,6 @@ namespace Vehicless.API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

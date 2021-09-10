@@ -2,7 +2,7 @@
 
 namespace Vehicless.API.Migrations
 {
-    public partial class AddTableDocumentTypes : Migration
+    public partial class TableDocumentTypes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

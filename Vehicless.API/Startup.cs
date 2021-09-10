@@ -30,6 +30,8 @@ namespace Vehicless.API
             {
                 x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddTransient<SeedDb>();
         }
 
         
