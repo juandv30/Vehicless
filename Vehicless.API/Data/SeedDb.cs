@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vehicles.API.Data.Entities;
+using Vehicles.Common.Enums;
+using Vehicless.API.Data.Entities;
+using Vehicless.API.Helpers;
 
 namespace Vehicless.API.Data
 {
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync()
@@ -21,9 +26,42 @@ namespace Vehicless.API.Data
             await CheckVehiclesTypeAsync();
             await CheckBrandsAsync();
             await CheckDocumentTypesAsync();
-            await CheckProceduresAsync();          
+            await CheckProceduresAsync();
+            await CheckRolesAsync();
+            await CheckUserAsync("1010", "Luis", "Salazar", "luis@yopmail.com", "320 678 4556", "Calle Luna Calle Sol", UserType.Admin);
+            await CheckUserAsync("2020", "Juan", "Diosa", "juanes@yopmail.com", "320 678 4555", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("3030", "Ledys", "Bedoya", "ledys@yopmail.com", "320 678 4557", "Calle Luna Calle Sol", UserType.User);
         }
-       
+
+        private async Task CheckUserAsync(string document, string firstName, string lastName, string email, string phoneNumber, string address, UserType 
+            userType)
+        {
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    Address = address,
+                    Document = document,
+                    DocumentType = _context.DocumentTypes.FirstOrDefault(x => x.Description == "Cédula"),
+                    Email = email,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = phoneNumber,
+                    UserName = email,
+                    UserType = userType
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
 
         private async Task CheckProceduresAsync()
         {
