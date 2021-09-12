@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Vehicless.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Vehicles.API.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vehicless.API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DocumentTypesController : Controller
     {
         private readonly DataContext _context;
