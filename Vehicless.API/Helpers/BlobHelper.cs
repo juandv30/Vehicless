@@ -18,6 +18,7 @@ namespace Vehicless.API.Helpers
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(keys);
             _blobClient = storageAccount.CreateCloudBlobClient();
         }
+
         public async Task<Guid> UploadBlobAsync(byte[] file, string containerName)
         {
             MemoryStream stream = new MemoryStream(file);
