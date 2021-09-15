@@ -72,7 +72,7 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Histories.FirstOrDefault().Date)
+                                @Html.DisplayNameFor(model => model.Histories.FirstOrDefault().DateLocal)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Histories.FirstOrDefault().User.FullName)
@@ -103,7 +103,7 @@
                         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => item.DateLocal)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.FullName)
