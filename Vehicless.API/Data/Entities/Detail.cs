@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Vehicles.API.Data.Entities;
 
@@ -11,6 +12,7 @@ namespace Vehicless.API.Data.Entities
     {
         public int Id { get; set; }
 
+        [JsonIgnore]
         [Display(Name = "Historia")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public History History { get; set; }
